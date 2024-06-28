@@ -6,9 +6,12 @@ class Cars:
             3: {"Name": "BMW X5", "Availability": "Available"}
         }
 
+        self.rent_record = {}
+
     def display_cars(self):
         for car_id, car_info in self.car_dict.items():
             print(f"Car ID: {car_id}, Name: {car_info['Name']}, Availability: {car_info['Availability']}")
+        print("")
             # For each id of the dictionary, and for each information of each id, it will print out the information
             # with the specific keys in between brackets []
 
@@ -20,9 +23,14 @@ class Cars:
                 if car_id in self.car_dict:
                     target_car = self.car_dict[car_id]
                     if target_car["Availability"] == "Available":
-                        target_car["Availability"] = "Not Available"
-                        print(f"Car {car_id} rented to {username}")
-                        break
+                        if car_id not in self.rent_record:
+                            target_car["Availability"] = "Not Available"
+                            self.rent_record[car_id] = {"user": username}
+                            print(f"Car {car_id} rented to {username}\n")
+                            break
+                        else:
+                            print(f"Car {car_id} was already rented to {username}\n")
+                            break
                     else:
                         print("The current car is not available")
                 else:
@@ -30,6 +38,8 @@ class Cars:
 
             except ValueError:
                 print("Please enter a number for the car ID")
+
+
 
     def menu_options(self):
         while True:
@@ -48,7 +58,7 @@ class Cars:
                 else:
                     print("Please Enter a Valid Option")
             except ValueError:
-                print("Please Enter a Number")
+                print(f"Invalid Input, please enter a number from 1 to {len(options)}\n")
 
 
 cars_instance = Cars()
