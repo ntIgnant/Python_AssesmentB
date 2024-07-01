@@ -61,7 +61,11 @@ class Cars:
         """
         Method to allow a user to rent a car from the inventory.
         """
-        counter = sum(1 for car_info in self.car_dict.values() if car_info['Availability'] == "Not Available")
+        counter = 0
+        for car_id, car_info in self.car_dict.items():
+            if car_info['Availability'] == "Not Available":
+                counter += 1
+
         if len(self.car_dict) == counter:
             print("There are no cars available\n")
         else:
