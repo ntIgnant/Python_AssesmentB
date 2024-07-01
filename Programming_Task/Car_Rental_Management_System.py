@@ -170,8 +170,15 @@ class Cars:
                 print(f"Invalid input, please enter a number from 1 to {len(options)}\n")
 
 
-# Object of Cars class created and start the car rental system by calling car_system.menu_options()
-car_system = Cars()
-car_system.menu_options()
+def main():
+    """
+    Entry point for the car rental management system.
+    Initializes the Cars class and starts the menu options for user interaction.
+    """
+    # Create an object from class Cars and start the car rental system by calling car_system.menu_options()
+    car_system = Cars()
+    car_system.menu_options()
 
 
+if __name__ == "__main__":
+    main()
